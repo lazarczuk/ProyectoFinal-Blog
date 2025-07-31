@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block contenido %}
+{% block contenido_cuerpo %}
 
     <!-- Banner -->
     <section id="banner">
@@ -78,6 +78,11 @@
                     <li><a href="#" class="button">More</a></li>
                 </ul>
             </article>
+
+            <ul class="actions">
+                <li><a href="{% url 'articulos:path_listar_articulos' %}" class="button"> VER TODOS LOS ARTICULOS </a></li>
+            </ul>
+
         </div>
     </section>
 
