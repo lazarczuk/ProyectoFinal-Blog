@@ -5,7 +5,10 @@
 
 {% block contenido_cuerpo %}
 
-    <a href="{% url 'articulos:path_crear_articulo' %}">CREAR NUEVO ARTICULO</a>
+    {% if es_moderador %}
+        <a href="{% url 'articulos:path_crear_articulo' %}">Crear artículo</a>
+    {% endif %}
+
     <h1>LISTA DE ARTICULOS</h1>
 
     <section class="posts">
@@ -34,7 +37,11 @@
                 <p>{{ articulo.descripcion }}</p>
 
                 <div class="actions">
-                    <a href="{% url 'articulos:path_detalle_articulo' articulo.pk %}" class="button"> Leer más </a>
+                    <a href="{% url 'articulos:path_detalle_articulo' articulo.pk %}" class="button"> Ver más </a>
+                    {% if es_moderador %}
+                     <a href="#" class="button" style="background-color: green; ">Editar</a>
+                     <a href="#" class="button" style="background-color: red;">Eliminar</a>
+                    {% endif %}
                 </div>
             </article>
 
