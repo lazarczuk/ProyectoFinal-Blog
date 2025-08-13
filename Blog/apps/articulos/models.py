@@ -1,6 +1,6 @@
 
 from django.db import models
-
+from apps.categorias.models import Categoria
 # Create your models here.
 
 class Articulo(models.Model):    #Son clases en Python que se van a relacionar con las tablas.
@@ -19,6 +19,8 @@ class Articulo(models.Model):    #Son clases en Python que se van a relacionar c
     imagen = models.ImageField(upload_to = 'articulos')     #Esto significa que las imagenes van a estar en una carpeta llamada articulos
     
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
+
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE,default=1)  #Esto es para evitar errores en la carga del servidor
 
     
     destacado = models.BooleanField(

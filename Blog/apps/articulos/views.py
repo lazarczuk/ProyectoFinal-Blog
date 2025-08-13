@@ -18,6 +18,10 @@ from django.views.generic import UpdateView
 from .models import Articulo
 from .forms import FormularioCrearArticulo
 
+from django.shortcuts import render, get_object_or_404
+from apps.articulos.models import Articulo
+from apps.categorias.models import Categoria
+
 
 
 
@@ -95,3 +99,13 @@ class EliminarArticuloView(DeleteView):
     model = Articulo
     template_name = 'articulos/eliminar.html'
     success_url = reverse_lazy('articulos:path_listar_articulos')
+
+#
+def articulos_por_categoria(request, categoria_id): 
+    categoria = get_object_or_404(Categoria, id=categoria_id)
+    articulos = Articulo.objects.filter(categoria=categoria).order_by("-creado")
+
+    return render(request, "articulos/lista_categoria.html", {
+        "categoria": categoria,
+        "articulos": articulos
+    })
